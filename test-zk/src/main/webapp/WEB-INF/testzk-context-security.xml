@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <!--  HTTP configuration sample -->
+    <security:global-method-security secured-annotations="enabled"/>
+    <security:http >
+        <!-- ZK AU reqeust -->
+        <security:intercept-url pattern="/zkau/**" access="permitAll" />
+        <security:intercept-url pattern="**/*.css" access="permitAll" />
+        <security:intercept-url pattern="**/*.ico" access="permitAll" />
+        <security:intercept-url pattern="/images/**" access="permitAll" />
+        <!-- the login page -->
+        <security:intercept-url pattern="/login.zul" access="permitAll" />
+        <!-- pages for anonymous access in an application -->
+<!--         <security:intercept-url pattern="/index.zul" access="hasRole('ANONYMOUS')" />
+        <security:intercept-url pattern="/articleContent.zul" access="hasRole('ANONYMOUS')" /> -->
+        <!-- secure pages -->
+        <security:intercept-url pattern="/**" access="isAuthenticated()" />
+         
+        <security:form-login login-page="/login.zul" 
+            authentication-failure-url="/login.zul?login_error=1"
+            authentication-success-forward-url="/index.zul"/>
+             
+        <security:logout logout-success-url="/login.zul" invalidate-session="true" />
+        <security:csrf disabled="true"/>
+    </security:http>   
+ 
+    <!-- omit inactive configurations -->
+ 
+    <security:authentication-manager>
+        <security:authentication-provider user-service-ref="myUserDetailsService">
+            <security:password-encoder hash="bcrypt" />
+        </security:authentication-provider>
+    </security:authentication-manager>
+</beans>

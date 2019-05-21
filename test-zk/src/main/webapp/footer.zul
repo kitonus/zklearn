@@ -1,0 +1,6 @@
+<div hflex="2" vflex="1" sclass="footer">
+    <vbox hflex="2" vflex="1" align="center">
+		Icons made by <a href="https://www.freepik.com">Freepik</a> from <a href="https://www.flaticon.com">www.flaticon.com</a>, 
+		Powered by ZK ${desktop.webApp.version} <a href="http://www.zkoss.org">http://www.zkoss.org</a>
+    </vbox>
+</div>

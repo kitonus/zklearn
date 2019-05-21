@@ -8,6 +8,8 @@
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
+    <spring.version>5.1.6.RELEASE</spring.version>
+    <spring.security.version>5.1.5.RELEASE</spring.security.version>
     <zkversion>8.6.0.1</zkversion>
   </properties>
   
@@ -31,6 +33,12 @@
       <groupId>org.zkoss.zk</groupId>
       <artifactId>zul</artifactId>
       <version>${zkversion}</version>
+      <exclusions>
+      	<exclusion>
+      		<groupId>org.slf4j</groupId>
+      		<artifactId>slf4j-jdk14</artifactId>
+      	</exclusion>
+      </exclusions>
     </dependency>
     <dependency>
       <groupId>commons-logging</groupId>
@@ -51,32 +59,49 @@
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-core</artifactId>
-	    <version>5.1.6.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-context -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-context</artifactId>
-	    <version>5.1.6.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-beans -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-beans</artifactId>
-	    <version>5.1.6.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.springframework/spring-web -->
 	<dependency>
 	    <groupId>org.springframework</groupId>
 	    <artifactId>spring-web</artifactId>
-	    <version>5.1.6.RELEASE</version>
+	    <version>${spring.version}</version>
 	</dependency>
 	<!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-log4j12 -->
+	<!-- Spring Security -->
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-config</artifactId>
+	    <version>${spring.security.version}</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.springframework.security</groupId>
+	    <artifactId>spring-security-web</artifactId>
+	    <version>${spring.security.version}</version>
+	</dependency>
 	<dependency>
 	    <groupId>org.slf4j</groupId>
 	    <artifactId>slf4j-log4j12</artifactId>
 	    <version>1.7.26</version>
-	    <scope>test</scope>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/javax.servlet/servlet-api -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>servlet-api</artifactId>
+	    <version>2.5</version>
+	    <scope>provided</scope>
 	</dependency>
 </dependencies>
 
@@ -90,6 +115,8 @@
 	      <version>9.4.18.v20190429</version>
 		  <configuration>
 		  	<webAppSourceDirectory>${project.basedir}/src/main/webapp</webAppSourceDirectory>
+		  	<classesDirectory>${project.build.directory}/${project.artifactId}/WEB-INF/classes</classesDirectory>
+		  	<webApp><contextPath>/test-zk</contextPath></webApp>
 		  </configuration>
 		</plugin>
 	</plugins>

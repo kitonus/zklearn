@@ -1,0 +1,26 @@
+<grid hflex="1" vflex="1" sclass="sidebar" apply="com.jatis.test.zk.NavigationComposer">
+    <columns>
+        <column width="36px"/>
+        <column/>
+    </columns>
+    <rows id="menuRows">
+        <row>
+            <image src="images/png/043-house.png" width="36px" height="36px"/>
+            <a href="http://www.zkoss.org/" label="ZK"/>
+        </row>
+        <row>
+            <image src="images/png/034-watering.png" width="36px" height="36px"/>
+            <a id="regList" label="Registration List"/>
+        </row>
+        <row>
+            <image src="images/png/040-blueberry.png" width="36px" height="36px"/>
+            <a id="regDtls" label="Registration Details" />
+        </row>
+        <row>
+            <image src="images/png/020-glove.png" width="36px" height="36px"/>
+            <a href="logout">
+            Logout
+            </a>
+        </row>
+    </rows>
+</grid>

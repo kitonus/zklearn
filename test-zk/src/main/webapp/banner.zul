@@ -1,0 +1,14 @@
+<?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
+<div hflex="1" vflex="1" sclass="banner">
+    <hbox hflex="1" vflex="1" align="center">
+        <a href="http://www.zkoss.org/">
+            <image src="/images/explosion-color.jpg" width="90px" />
+        </a>
+        <div width="400px">
+            <label value="Community Membership" sclass="banner-head" />
+        </div>
+        <hbox hflex="1" vflex="1" pack="end" align="end">
+        	${securityHelper.currentUser}
+        </hbox>
+    </hbox>
+</div>

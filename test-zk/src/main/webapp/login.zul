@@ -1,0 +1,41 @@
+<?link rel="stylesheet" type="text/css" href="/style.css"?>
+<!-- it is a login page, no authentication protection and use anonymous template -->
+<?init class="org.zkoss.zk.ui.util.Composition"
+    arg0="/template-anonymous.zul"?>
+<zk>
+    <hbox self="@define(content)" vflex="1" hflex="1" align="center"
+        pack="center" spacing="20px">
+        <vlayout>
+            <window id="loginWin"
+                title="Login with you name" border="normal" hflex="min">
+                <vbox hflex="min" align="center">
+				<html:form action="login" method="POST"
+				    xmlns:html="native">
+                    <grid hflex="min">
+                        <columns>
+                            <column hflex="min" align="right" />
+                            <column />
+                        </columns>
+                        <rows>
+                            <row>
+                                Username :
+                                <textbox id="account" width="200px" name="username"/>
+                            </row>
+                            <row>
+                                Password :
+                                <textbox id="password" type="password" name="password"
+                                    width="200px" />
+                            </row>
+                        </rows>
+                    </grid>
+                    <label id="message" sclass="warn" value="&#160;" />
+                    <button type="reset" label="Reset" />
+                    <button type="submit" label="Submit" />
+				</html:form>                 
+                     
+                </vbox>
+            </window>
+            (use account='zkoss' and password='1234' to login)
+        </vlayout>
+    </hbox>
+</zk>
