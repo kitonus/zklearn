@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+     http://www.springframework.org/schema/beans/spring-beans.xsd
+     http://www.springframework.org/schema/data/jpa
+     http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+     
+   <jpa:repositories base-package="com.jatis.test.zk.repository" 
+   	transaction-manager-ref="transactionManager"/>
+
+   <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+   	<property name="jpaVendorAdapter" ref="vendorAdapter"/>
+   	<property name="packagesToScan" value="com.jatis.test.zk.entity"/>
+   	<property name="dataSource" ref="dataSource"/>
+   </bean>
+   
+   <bean id="vendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+   	<property name="generateDdl" value="true"/>
+   	<property name="database" value="H2"/>
+   </bean>
+   
+   <bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource">
+   	<property name="driverClassName" value="org.h2.Driver"/>
+   	<property name="jdbcUrl" value="jdbc:h2:~/testzk"/>
+   	<property name="username" value="testzk"/>
+   	<property name="password" value="password"/>
+   	<property name="maximumPoolSize" value="5"/>
+   	<property name="connectionTestQuery" value="select 1"/>
+   </bean>
+   
+   <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+   	<property name="entityManagerFactory" ref="entityManagerFactory"/>
+   </bean>
+</beans>
