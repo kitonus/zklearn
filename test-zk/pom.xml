@@ -142,6 +142,24 @@
 	    <artifactId>hibernate-core</artifactId>
 	    <version>5.3.10.Final</version>
 	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.zkoss.theme/atlantic -->
+	<dependency>
+	    <groupId>org.zkoss.theme</groupId>
+	    <artifactId>atlantic</artifactId>
+	    <version>${zkversion}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.zkoss.theme/sapphire -->
+	<dependency>
+	    <groupId>org.zkoss.theme</groupId>
+	    <artifactId>sapphire</artifactId>
+	    <version>${zkversion}</version>
+	</dependency>
+	<!-- https://mvnrepository.com/artifact/org.zkoss.theme/breeze -->
+	<dependency>
+	    <groupId>org.zkoss.theme</groupId>
+	    <artifactId>breeze</artifactId>
+	    <version>8.6.0.1</version>
+	</dependency>
 </dependencies>
 
 <build>

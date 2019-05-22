@@ -1,26 +1,23 @@
 <zk>
-    <style src="/css/style.css" />
+    <!-- <style src="/css/style.css" /> -->
     <grid apply="com.jatis.test.zk.RegistrationListComposer">
         <auxhead>
-            <auxheader colspan="4" label="Contributor of ZK International Message(Part)" />
+            <auxheader colspan="4" label="Registered members" />
         </auxhead>
         <columns>
             <column hflex="5">Name</column>
             <column hflex="6">Gender</column>
             <column hflex="3">Date of Birth</column>
             <column hflex="4">Creation Date</column>
+            <column hflex="5">Action</column>
         </columns>
         <rows id="memberRows" sclass="narrow">
             <row id="noDataRow">
-            	<cell colspan="4">
-            		<label value="No registered members"/>
+            	<cell colspan="5">
+            		<hbox align="center">
+            			<label value="No registered members"/>
+            		</hbox>
             	</cell>
-            </row>
-            <row>
-                <label value="Budi" />
-                <label value="male" />
-                <datebox readonly="true" disabled="true"/>
-                <datebox readonly="true" disabled="true"/>
             </row>
         </rows>
     </grid>

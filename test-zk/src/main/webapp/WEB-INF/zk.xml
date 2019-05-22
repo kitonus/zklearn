@@ -5,6 +5,14 @@
 -->
 
 <zk>
+	<library-property>
+	    <name>org.zkoss.theme.preferred</name>
+	    <value>atlantic</value>
+	    <!-- <value>sapphire</value> -->
+	    <!-- <value>breeze</value> -->
+	    <!--<value>deepsea</value>--> <!-- no whitespace in theme names -->
+	</library-property>
+
 	<device-config>
 		<device-type>ajax</device-type>
 		<timeout-uri>/timeout.zul</timeout-uri><!-- An empty URL can cause the browser to reload the same URL -->

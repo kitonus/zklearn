@@ -64,6 +64,7 @@ public class RegistrationComposer extends SelectorComposer<Component>{
 							this.genderRadio.setSelectedItem(r);
 						}
 					}
+					this.birthdayBox.setValue(dto.getDateOfBirth());
 				}
 			}
 		}

@@ -7,7 +7,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -58,6 +57,12 @@ public class RegistrationService implements InitializingBean{
 	
 	public List<MemberEntity> findAll(){
 		return this.memberRepository.findAll();
+	}
+	
+	@Secured("ROLE_ADMIN")
+	@Transactional
+	public void delete(String name) {
+		this.memberRepository.deleteById(name);
 	}
 
 	@Override
