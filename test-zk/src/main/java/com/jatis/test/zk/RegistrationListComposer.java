@@ -7,6 +7,7 @@ import java.util.List;
 import org.zkoss.zk.ui.Component;
 import org.zkoss.zk.ui.event.Event;
 import org.zkoss.zk.ui.event.Events;
+import org.zkoss.zk.ui.event.SerializableEventListener;
 import org.zkoss.zk.ui.select.SelectorComposer;
 import org.zkoss.zk.ui.select.annotation.VariableResolver;
 import org.zkoss.zk.ui.select.annotation.Wire;
@@ -14,11 +15,12 @@ import org.zkoss.zk.ui.select.annotation.WireVariable;
 import org.zkoss.zul.Button;
 import org.zkoss.zul.Hbox;
 import org.zkoss.zul.Label;
+import org.zkoss.zul.Messagebox;
+import org.zkoss.zul.Messagebox.ClickEvent;
 import org.zkoss.zul.Row;
 import org.zkoss.zul.Rows;
 
 import com.jatis.test.zk.entity.MemberEntity;
-import com.jatis.test.zk.event.SerializableEventListener;
 import com.jatis.test.zk.service.RegistrationService;
 import com.jatis.test.zk.util.NavigationUtil;
 
@@ -68,6 +70,7 @@ public class RegistrationListComposer extends SelectorComposer<Component> {
 				bEdit.setAttribute("relatedRow", row);
 				bEdit.addEventListener(Events.ON_CLICK, 
 						new SerializableEventListener<Event>() {
+							private static final long serialVersionUID = 1L;
 
 							@Override
 							public void onEvent(Event event) throws Exception {
@@ -84,16 +87,29 @@ public class RegistrationListComposer extends SelectorComposer<Component> {
 				hbox.appendChild(bDelete);
 				bDelete.addEventListener(Events.ON_CLICK, 
 						new SerializableEventListener<Event>() {
+							private static final long serialVersionUID = 1L;
 
 							@Override
 							public void onEvent(Event event) throws Exception {
 								Component target = event.getTarget();
 								String id = (String)target.getAttribute("id");
-								regService.delete(id);
-								memberRows.removeChild((Component)target.getAttribute("relatedRow"));
-								if (memberRows.getChildren().size() == 1) {
-									noDataRow.setVisible(true);
-								}
+								
+								Messagebox.show("Are you sure you want to delete?", new Messagebox.Button[] {
+										Messagebox.Button.YES, Messagebox.Button.NO}, 
+										new SerializableEventListener<Messagebox.ClickEvent>() {
+											private static final long serialVersionUID = 1L;
+
+											@Override
+											public void onEvent(ClickEvent msgBoxEvent) throws Exception {
+												if (Messagebox.Button.YES.equals(msgBoxEvent.getButton())) {
+													regService.delete(id);
+													memberRows.removeChild((Component)target.getAttribute("relatedRow"));
+													if (memberRows.getChildren().size() == 1) {
+														noDataRow.setVisible(true);
+													}
+												}
+											}
+										});
 							}
 						});
 				row.appendChild(hbox);

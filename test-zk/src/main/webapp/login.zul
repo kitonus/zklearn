@@ -6,8 +6,8 @@
     <hbox self="@define(content)" vflex="1" hflex="1" align="center"
         pack="center" spacing="20px">
         <vlayout>
-            <window id="loginWin"
-                title="Login with you name" border="normal" hflex="min">
+            <window id="loginWin" apply="com.jatis.test.zk.LoginController"
+                title="${labels.login.prompt}" border="normal" hflex="min">
                 <vbox hflex="min" align="center">
 				<html:form action="login" method="POST"
 				    xmlns:html="native">
@@ -18,19 +18,27 @@
                         </columns>
                         <rows>
                             <row>
-                                Username :
-                                <textbox id="account" width="200px" name="username"/>
+                                ${labels.login.username} :
+                                <textbox id="account" width="200px" name="username" constraint="no empty"/>
                             </row>
                             <row>
-                                Password :
+                                ${labels.login.password} :
                                 <textbox id="password" type="password" name="password"
-                                    width="200px" />
+                                    width="200px" constraint="no empty"/>
+                            </row>
+                            <row>
+                            	<cell colspan="2" align="center">
+                            		<div style="text-align: center;">
+				                    	<label id="message" sclass="warn" value="&#160;" />
+				                    </div>
+                            		<div style="text-align: center;">
+					                    <button type="reset" label="Reset" />
+					                    <button type="submit" label="Submit" />
+				                    </div>
+                            	</cell>
                             </row>
                         </rows>
                     </grid>
-                    <label id="message" sclass="warn" value="&#160;" />
-                    <button type="reset" label="Reset" />
-                    <button type="submit" label="Submit" />
 				</html:form>                 
                      
                 </vbox>

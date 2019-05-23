@@ -20,6 +20,7 @@ import org.zkoss.zul.Textbox;
 
 import com.jatis.test.zk.dto.RegistrationDTO;
 import com.jatis.test.zk.service.RegistrationService;
+import com.jatis.test.zk.util.NavigationUtil;
 
 @VariableResolver(org.zkoss.zkplus.spring.DelegatingVariableResolver.class)
 public class RegistrationComposer extends SelectorComposer<Component>{
@@ -87,5 +88,6 @@ public class RegistrationComposer extends SelectorComposer<Component>{
     	dto.setDateOfBirth(birthdayBox.getValue());
     	dto.setMale("male".equalsIgnoreCase(genderRadio.getSelectedItem().getValue()));
     	regService.register(dto);
+    	NavigationUtil.loadPage(this.getSelf().getPage(), "/registration_list_main.zul", null);
     }
 }

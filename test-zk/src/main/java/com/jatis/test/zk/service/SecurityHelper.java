@@ -1,10 +1,15 @@
 package com.jatis.test.zk.service;
 
+import java.util.Locale;
+
+import javax.servlet.ServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
+import org.zkoss.zk.ui.Executions;
 
 @Component("securityHelper")
 public class SecurityHelper {
@@ -26,5 +31,13 @@ public class SecurityHelper {
 			}
 			return "";
 		}
+	}
+	
+	public static Locale getCurrentLocale() {
+		return ((ServletRequest)Executions.getCurrent().getNativeRequest()).getLocale();
+	}
+	
+	public static String getCurrentLocaleString() {
+		return String.valueOf(getCurrentLocale());
 	}
 }

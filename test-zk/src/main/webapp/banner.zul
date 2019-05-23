@@ -1,6 +1,6 @@
 <?variable-resolver class="org.zkoss.zkplus.spring.DelegatingVariableResolver"?>
 <div hflex="1" vflex="1" sclass="banner">
-    <hbox hflex="1" vflex="1" align="center">
+    <hbox hflex="1" vflex="1" align="center" apply="com.jatis.test.zk.BannerComposer">
         <a href="http://www.zkoss.org/">
             <image src="/images/explosion-color.jpg" width="90px" />
         </a>
@@ -8,7 +8,9 @@
             <label value="Community Membership" sclass="banner-head" />
         </div>
         <hbox hflex="1" vflex="1" pack="end" align="end">
-        	${securityHelper.currentUser}
+        	${securityHelper.currentUser} 
+        	<label id="lblLang" value=""/> 
+        	<checkbox id="forceEnUS" mold="switch"/>
         </hbox>
     </hbox>
 </div>
