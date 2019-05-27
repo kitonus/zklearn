@@ -10,7 +10,8 @@
         <hbox hflex="1" vflex="1" pack="end" align="end">
         	${securityHelper.currentUser} 
         	<label id="lblLang" value=""/> 
-        	<checkbox id="forceEnUS" mold="switch"/>
+        	<checkbox id="forceEnUS" mold="toggle" label="EN" checked="true"/>
+        	<checkbox id="forceInID" mold="toggle" label="ID"/>
         </hbox>
     </hbox>
 </div>

@@ -6,7 +6,7 @@
             <column/>
         </columns>
         <auxhead>
-            <auxheader colspan="2" label="Registration Form" style="font-size:16px" />
+            <auxheader colspan="2" label="${labels.registration.form.title}" style="font-size:16px" />
         </auxhead>
         <rows>
             <row>
