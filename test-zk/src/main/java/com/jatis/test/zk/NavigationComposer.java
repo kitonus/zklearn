@@ -1,5 +1,6 @@
 package com.jatis.test.zk;
 
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -44,17 +45,24 @@ public class NavigationComposer extends SelectorComposer<Component>{
 		loadPage("/registration_list_main.zul", null);
 	}
 	
+	@Listen("onClick=a#hello")
+	public void toHello() {
+		Map<String, String> helloArgs = new HashMap<String, String>();
+		helloArgs.put("name", "Orang Baru");
+		loadPage("/hello.zul", helloArgs);
+	}
+	
 	private void loadPage(String uri, Map<?,?> args) {
 		try {
-		Iterator<Component> it = Selectors.iterable(menuRows.getPage(), "#mainInclude").iterator();
-		while (it.hasNext()) {
-			Component c = it.next();
-			if (c instanceof Include) {
-				c.getChildren().clear();
-				Executions.createComponents(uri, c, args);
-				break;
+			Iterator<Component> it = Selectors.iterable(menuRows.getPage(), "#mainInclude").iterator();
+			while (it.hasNext()) {
+				Component c = it.next();
+				if (c instanceof Include) {
+					c.getChildren().clear();
+					Executions.createComponents(uri, c, args);
+					break;
+				}
 			}
-		}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

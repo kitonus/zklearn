@@ -7,9 +7,9 @@
 <zk>
 	<library-property>
 	    <name>org.zkoss.theme.preferred</name>
-	    <value>atlantic</value>
+	    <!-- <value>atlantic</value> -->
 	    <!-- <value>sapphire</value> -->
-	    <!-- <value>breeze</value> -->
+	    <value>breeze</value>
 	    <!--<value>deepsea</value>--> <!-- no whitespace in theme names -->
 	</library-property>
 

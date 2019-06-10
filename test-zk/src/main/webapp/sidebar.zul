@@ -17,6 +17,10 @@
             <a id="regDtls" label="Registration Details" />
         </row>
         <row>
+            <image src="images/png/007-scissors.png" width="36px" height="36px"/>
+            <a id="hello" label="Hello" />
+        </row>
+        <row>
             <image src="images/png/020-glove.png" width="36px" height="36px"/>
             <a href="logout">
             Logout
