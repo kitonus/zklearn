@@ -1,0 +1,36 @@
+<?page title="new page title" contentType="text/html;charset=UTF-8"?>
+<zk>
+<window title="Car Search" border="normal"
+	viewModel="@id('vm') @init('com.jatis.test.zk.vm.CarSearchViewModel')">
+	<hbox align="center">
+		Keyword:
+		<textbox value="@save(vm.keyword, before='search')"/>
+		<button label="Search" onClick="@command('search')"/>
+		<button label="Add" onClick="@command('add')"/>
+	</hbox>
+	<listbox id="carListbox" height="160px" 
+		model="@load(vm.carList)" emptyMessage="No car found in the result">
+	    <listhead>
+	        <listheader label="Model" />
+	        <listheader label="Make" />
+	        <listheader label="Price" width="20%"/>
+	    </listhead>
+	    <template name="model">
+	        <listitem onClick="@command('select', id=each.id)">
+	            <listcell label="@init(each.model)"></listcell>
+	            <listcell label="@init(each.make)"></listcell>
+	            <listcell>$<label value="@init(each.price)" />
+	            </listcell>
+	        </listitem>
+	    </template>
+	</listbox>
+	<hlayout style="margin-top:20px" width="100%" visible="@load(vm.adding || vm.editing)">
+		<vlayout hflex="1">
+			<hlayout vflex="min">Model <textbox value="@bind(vm.selectedCar.model)" /></hlayout>
+			<hlayout vflex="min">Make <textbox value="@bind(vm.selectedCar.make)" /></hlayout>
+			<hlayout vflex="min">Price <textbox value="@bind(vm.selectedCar.price)" /></hlayout>
+			<hlayout vflex="min">Description <textbox value="@bind(vm.selectedCar.description)" /></hlayout>
+			<button label="Save" onClick="@command('save')"/>
+		</vlayout>
+	</hlayout></window>
+</zk>
