@@ -1,7 +1,8 @@
 <?page title="new page title" contentType="text/html;charset=UTF-8"?>
 <zk>
 <window title="Car Search" border="normal"
-	viewModel="@id('vm') @init('com.jatis.test.zk.vm.CarSearchViewModel')">
+	viewModel="@id('vm') @init('com.jatis.test.zk.vm.CarSearchViewModel')"
+		validationMessages="@id('vmsgs')">
 	<hbox align="center">
 		Keyword:
 		<textbox value="@save(vm.keyword, before='search')"/>
@@ -26,11 +27,23 @@
 	</listbox>
 	<hlayout style="margin-top:20px" width="100%" visible="@load(vm.adding || vm.editing)">
 		<vlayout hflex="1">
-			<hlayout vflex="min">Model <textbox value="@bind(vm.selectedCar.model)" /></hlayout>
-			<hlayout vflex="min">Make <textbox value="@bind(vm.selectedCar.make)" /></hlayout>
-			<hlayout vflex="min">Price <textbox value="@bind(vm.selectedCar.price)" /></hlayout>
-			<hlayout vflex="min">Description <textbox value="@bind(vm.selectedCar.description)" /></hlayout>
-			<button label="Save" onClick="@command('save')"/>
+			<hlayout vflex="min">Model 
+				<textbox id="txtModel" value="@bind(vm.selectedCar.model) @validator('beanValidator')" constraint="no empty"/>
+				<label id="msgTxtModel" value="@load(vmsgs[txtModel])"></label>
+			</hlayout>
+			<hlayout vflex="min">Make 
+				<textbox id="txtMake" value="@bind(vm.selectedCar.make) @validator('beanValidator')" constraint="no empty"/>
+				<label id="msgTxtMake" value="@load(vmsgs[txtMake])"></label>
+			</hlayout>
+			<hlayout vflex="min">Price 
+				<intbox id="txtPrice" value="@bind(vm.selectedCar.price) @validator(vm.priceValidator)" constraint="no empty"/>
+				<label id="msgTxtPrice" value="@load(vmsgs[txtPrice])"></label>
+			</hlayout>
+			<hlayout vflex="min">Description <textbox value="@bind(vm.selectedCar.description)" constraint="no empty"/></hlayout>
+			
+			<hlayout vflex="min">
+				<button label="Save" onClick="@command('save')" />
+			</hlayout>
 		</vlayout>
 	</hlayout></window>
 </zk>

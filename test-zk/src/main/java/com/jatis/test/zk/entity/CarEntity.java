@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 @Entity
 @Table(name="mst_car")
 public class CarEntity {
@@ -14,7 +16,10 @@ public class CarEntity {
 	@GeneratedValue
 	@Id
     private UUID id;
+	
+	@NotEmpty(message="Model cannot be null")
     private String model;
+	@NotEmpty(message="Make cannot be null")
     private String make;
     private String preview;
     private String description;
